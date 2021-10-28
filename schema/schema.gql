@@ -1,16 +1,22 @@
-type Employer {
+interface Version {
+  id: Int
+  name: String
+}
+
+type Employer  implements Version {
   id: Int
   name: String
   employees: [Employee]
 }
-type Employee {
+
+type Employee implements Version{
   id: Int
   name: String
   employer: Employer
 }
 type Query {
-  employees: [Employee]
+  employees: [Version]
 }
 type Mutation {
-  addEmployee(name: String!, employerId: Int!): Employee
+  addEmployee(name: String!, employerId: Int!): Version
 }
